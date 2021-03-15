@@ -37,7 +37,13 @@ module RequireReloader
       watchable_exts = opts[:exts] ? Array(opts[:exts]) : [:rb]
       helper         = Helper.new
 
-      app = Object.const_get(Rails.application.class.parent_name)
+      module_parent_name = if Rails::VERSION::MAJOR >= 6
+        Rails.application.class.module_parent_name
+      else
+        Rails.application.class.parent_name
+      end
+      app = Object.const_get(module_parent_name)
+    
       app::Application.configure do
 
         if watchable_dir && config.respond_to?(:watchable_dirs)
