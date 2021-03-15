@@ -13,6 +13,14 @@ It uses `ActionDispatch::Callbacks.to_prepare` to reload the
 
 ## Usage
 
+Add `RequireReloader` to your `Gemfile`
+
+    # Gemfile
+    ...    
+    group :development do
+      gem 'require_reloader' # Automatically Reload Local Gems
+    end
+
 Given a `Gemfile`
 
     # Gemfile
